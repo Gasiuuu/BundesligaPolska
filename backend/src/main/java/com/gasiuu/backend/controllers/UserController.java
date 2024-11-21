@@ -3,7 +3,6 @@ package com.gasiuu.backend.controllers;
 import com.gasiuu.backend.domain.dto.ReqRes;
 import com.gasiuu.backend.domain.entities.UserEntity;
 import com.gasiuu.backend.services.UsersManagementService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -13,8 +12,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class UserController {
 
-    @Autowired
     private UsersManagementService usersManagementService;
+
+    public UserController(UsersManagementService usersManagementService) {
+        this.usersManagementService = usersManagementService;
+    }
 
     @PostMapping("/auth/register")
     public ResponseEntity<ReqRes> register(@RequestBody ReqRes reg){
@@ -31,7 +33,6 @@ public class UserController {
         return ResponseEntity.ok(usersManagementService.refreshToken(req));
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin/get-all-users")
     public ResponseEntity<ReqRes> getAllUsers() {
         return ResponseEntity.ok(usersManagementService.getAllUsers());

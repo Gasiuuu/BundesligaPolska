@@ -3,7 +3,7 @@ package com.gasiuu.backend.services;
 import com.gasiuu.backend.domain.dto.ReqRes;
 import com.gasiuu.backend.domain.entities.UserEntity;
 import com.gasiuu.backend.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,20 +13,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 public class UsersManagementService {
 
-    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
     private JWTUtils jwtUtils;
 
-    @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
     private PasswordEncoder passwordEncoder;
+
 
     public ReqRes register(ReqRes registrationRequest) {
         ReqRes resp = new ReqRes();
@@ -36,7 +34,8 @@ public class UsersManagementService {
             userEntity.setEmail(registrationRequest.getEmail());
             userEntity.setCity(registrationRequest.getCity());
             userEntity.setRole(registrationRequest.getRole());
-            userEntity.setName(registrationRequest.getName());
+            userEntity.setFirstName(registrationRequest.getFirstName());
+            userEntity.setLastName(registrationRequest.getLastName());
             userEntity.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
             UserEntity userEntityResult = userRepository.save(userEntity);
             if (userEntityResult.getId() > 0) {
@@ -62,6 +61,7 @@ public class UsersManagementService {
             var refreshToken = jwtUtils.generateRefreshToken(new HashMap<>(), user);
             response.setStatusCode(200);
             response.setToken(jwt);
+            response.setRole(user.getRole());
             response.setRefreshToken(refreshToken);
             response.setExpirationTime("24Hrs");
             response.setMessage("Successfully Logged In");
@@ -157,7 +157,8 @@ public class UsersManagementService {
             if (userOptional.isPresent()) {
                 UserEntity existingUser = userOptional.get();
                 existingUser.setEmail(updatedUser.getEmail());
-                existingUser.setName(updatedUser.getName());
+                existingUser.setFirstName(updatedUser.getFirstName());
+                existingUser.setLastName(updatedUser.getLastName());
                 existingUser.setCity(updatedUser.getCity());
                 existingUser.setRole(updatedUser.getRole());
 

@@ -1,0 +1,137 @@
+.clubs-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    width: 80%;
+}
+
+.clubs-container2 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.clubs-header {
+    font-size: 3em;
+    font-weight: bold;
+    color: white;
+    padding: 15px;
+    margin-top: 20px;
+    text-align: left;
+    width: 80%;
+}
+
+.club {
+    background-color: #303030;
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease-out;
+}
+
+#club-2:hover {
+    cursor: pointer;
+    background-color: #1f60a6;
+}
+
+#club-3:hover {
+    cursor: pointer;
+    background-color: #ff0000;
+}
+
+#club-4:hover {
+    cursor: pointer;
+    background-color: #ffd900;
+    color: #000000;
+}
+
+#club-5:hover {
+    cursor: pointer;
+    background-color: #ff003c;
+}
+
+#club-10:hover {
+    cursor: pointer;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+#club-11:hover {
+    cursor: pointer;
+    background-color: #41a639;
+}
+
+#club-12:hover {
+    cursor: pointer;
+    background-color: #008149;
+}
+
+#club-15:hover {
+    cursor: pointer;
+    background-color: #e30613;
+}
+
+#club-16:hover {
+    cursor: pointer;
+    background-color: #d80e15;
+}
+
+#club-17:hover {
+    cursor: pointer;
+    background-color: #e4002b;
+}
+
+#club-18:hover {
+    cursor: pointer;
+    background-color: #020202;
+}
+
+#club-19:hover {
+    cursor: pointer;
+    background-color: #000000;
+}
+
+#club-20:hover {
+    cursor: pointer;
+    background-color: #604734;
+}
+
+#club-28:hover {
+    cursor: pointer;
+    background-color: #e30613;
+}
+
+#club-36:hover {
+    cursor: pointer;
+    background-color: #1456a2;
+}
+
+#club-44:hover {
+    cursor: pointer;
+    background-color: #005397;
+}
+
+#club-721:hover {
+    cursor: pointer;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+
+
+
+
+
+
+
+.club-img {
+    width: 100px;
+    height: 100px;
+}
+
+.club-name {
+    font-size: 1.5em;
+}

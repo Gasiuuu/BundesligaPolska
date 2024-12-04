@@ -18,6 +18,21 @@ class UserService {
         return response.data;
     }
 
+    static async getYourProfile(token) {
+        try {
+
+            const response = await axios.get(`${UserService.BASE_URL}/adminuser/get-profile`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data;
+
+        } catch (e) {
+            throw e;
+        }
+    }
+
 
     /* auth checker */
 

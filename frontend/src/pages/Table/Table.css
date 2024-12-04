@@ -1,0 +1,123 @@
+#standings-container {
+    color: #acacac;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#standings-table {
+    width: 80%;
+}
+
+#table-header {
+    font-size: 3em;
+    font-weight: bold;
+    color: white;
+    padding: 15px;
+    margin-top: 20px;
+    text-align: left;
+    width: 80%;
+}
+
+.s-table-header {
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(9 9 11);
+    /*border-bottom: 1px solid rgb(9 9 11);*/
+}
+
+#s-table-header-team {
+    font-weight: bold;
+    text-align: left;
+    padding: 10px;
+    background-color: rgb(9 9 11);
+}
+
+#team-standing {
+    text-align: center;
+    background-color: #303030;
+}
+
+.standing-row {
+    padding: 15px;
+}
+
+.cl-row {
+    border-left: 4px solid #22aa16;
+}
+
+.el-row {
+    border-left: 4px solid #0f4cc5;
+}
+
+.ecl-row {
+    border-left: 4px solid #55fff5;
+}
+
+.relegation-row {
+    border-left: 4px solid #efa144;
+}
+
+.abstieg-row {
+    border-left: 4px solid #bf2424;
+}
+
+.team-logo-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+    padding: 20px;
+}
+
+/* JEDEN WIERSZ W TABELI */
+.team-logo {
+    width: 40px;
+    height: 40px;
+}
+.team-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* LEGENDA */
+#legend {
+    text-align: left;
+    padding: 15px;
+    width: 80%;
+}
+.cl-row2 {
+    border-left: 4px solid #22aa16;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.el-row2 {
+    border-left: 4px solid #0f4cc5;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.ecl-row2 {
+    border-left: 4px solid #55fff5;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.relegation-row2 {
+    border-left: 4px solid #efa144;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.abstieg-row2 {
+    border-left: 4px solid #bf2424;
+    padding: 5px;
+    margin-bottom: 5px;
+
+}

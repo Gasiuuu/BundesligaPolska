@@ -46,7 +46,7 @@ function Login() {
             className="h-screen w-full bg-cover bg-center"
             style={{ backgroundImage: `url(${backgroundImage})` }}
         >
-            <div className="flex items-center justify-center h-full">
+            <div className="flex items-center justify-center h-full text-black">
                 <div className="bg-white bg-opacity-50 backdrop-blur-md rounded-xl p-8 shadow-lg max-w-4xl w-full flex">
 
                     {/* Lewa strona z przyciskami */}

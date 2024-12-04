@@ -18,12 +18,13 @@
 body {
     margin: 0;
     font-family: 'Bundesliga-font', sans-serif;
-    height: 100%; /* Ustawia pełną wysokość dla body */
+    color: white;
+    height: 100%;
     background-color: rgb(9 9 11);
 }
 
 html {
-    height: 100%; /* Ustawia pełną wysokość dla html */
+    height: 100%;
 }
 
 *::-webkit-scrollbar {

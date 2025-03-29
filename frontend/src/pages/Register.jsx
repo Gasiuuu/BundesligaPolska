@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UserService from "../service/UserService";
-import backgroundImage from '../assets/background-img.jpg';
+import backgroundImage from '../assets/bvb-stadion.jpg';
+import NewsletterService from "../service/NewsletterService.js";
 
 
 
@@ -14,13 +15,16 @@ function Register() {
         email: '',
         password: '',
         confirmPassword: '', // Pole tylko frontendowe
-        role: ''
+        // role: '',
+        newsletter: false
     });
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-        console.log(name, value);
+        const { name, value, type, checked } = e.target;
+        setFormData({
+            ...formData,
+            [name]: type === "checkbox" ? checked : value
+        });
     };
 
     const handleSubmit = async (e) => {
@@ -32,12 +36,21 @@ function Register() {
         }
 
         try {
-            const token = localStorage.getItem('token');
+            const { confirmPassword, newsletter, ...dataToSend } = formData;
 
-            // Przygotowanie danych bez confirmPassword
-            const { confirmPassword, ...dataToSend } = formData;
+            await UserService.register(dataToSend);
 
-            await UserService.register(dataToSend, token);
+            if (newsletter) {
+
+                NewsletterService.startNewsletter(formData);
+                // await fetch('http://localhost:3001/newsletter', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     },
+                //     body: JSON.stringify({ email: formData.email, firstName: formData.firstName, lastName: formData.lastName })
+                // });
+            }
 
             setFormData({
                 firstName: '',
@@ -45,10 +58,11 @@ function Register() {
                 email: '',
                 password: '',
                 confirmPassword: '',
-                role: ''
+                // role: '',
+                newsletter: false
             });
 
-            alert('User registered successfully');
+            alert('Rejestracja przebiegła pomyślnie');
             navigate('/strona-glowna');
 
         } catch (error) {
@@ -74,7 +88,7 @@ function Register() {
                             <label className="text-gray-800">Imię</label>
                             <input
                                 type="text"
-                                className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700"
+                                className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700 text-black"
                                 name="firstName"
                                 value={formData.firstName}
                                 onChange={handleInputChange}
@@ -86,7 +100,7 @@ function Register() {
                             <label className="text-gray-800">Nazwisko</label>
                             <input
                                 type="text"
-                                className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700"
+                                className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700 text-black"
                                 name="lastName"
                                 value={formData.lastName}
                                 onChange={handleInputChange}
@@ -98,7 +112,7 @@ function Register() {
                             <label className="text-gray-800">Email</label>
                             <input
                                 type="email"
-                                className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700"
+                                className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700 text-black"
                                 name="email"
                                 value={formData.email}
                                 onChange={handleInputChange}
@@ -110,7 +124,7 @@ function Register() {
                             <label className="text-gray-800">Hasło</label>
                             <input
                                 type="password"
-                                className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700"
+                                className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700 text-black"
                                 name="password"
                                 value={formData.password}
                                 onChange={handleInputChange}
@@ -122,7 +136,7 @@ function Register() {
                             <label className="text-gray-800">Powtórz hasło</label>
                             <input
                                 type="password"
-                                className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700"
+                                className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700 text-black"
                                 name="confirmPassword"
                                 value={formData.confirmPassword}
                                 onChange={handleInputChange}
@@ -134,7 +148,7 @@ function Register() {
                             <label className="text-gray-800">Miasto</label>
                             <input
                                 type="text"
-                                className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700"
+                                className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700 text-black"
                                 name="city"
                                 value={formData.city}
                                 onChange={handleInputChange}
@@ -142,17 +156,29 @@ function Register() {
                             />
                         </div>
 
+                        {/*<div className="mt-3">*/}
+                        {/*    <label className="text-gray-800">Rola</label>*/}
+                        {/*    <input*/}
+                        {/*        type="text"*/}
+                        {/*        className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700 text-black"*/}
+                        {/*        name="role"*/}
+                        {/*        value={formData.role}*/}
+                        {/*        onChange={handleInputChange}*/}
+                        {/*        required*/}
+                        {/*    />*/}
+                        {/*</div>*/}
+
                         <div className="mt-3">
-                            <label className="text-gray-800">Rola</label>
+                            <label className="text-gray-800">Chcę otrzymywać newsletter</label>
                             <input
-                                type="text"
-                                className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700"
-                                name="role"
-                                value={formData.role}
+                                type="checkbox"
+                                className="ml-2"
+                                name="newsletter"
+                                checked={formData.newsletter}
                                 onChange={handleInputChange}
-                                required
                             />
                         </div>
+
 
                         <button
                             type="submit"
@@ -168,4 +194,4 @@ function Register() {
 
 }
 
-export { Register };
+export {Register};

@@ -1,0 +1,106 @@
+/*.news-panel-option {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    background-color: #1f1f27;*/
+/*    border-radius: 10px;*/
+/*    margin: 50px auto;*/
+/*    padding: 20px;*/
+/*    font-size: 1em;*/
+/*}*/
+
+/*.news-panel-option span {*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*.edit-btn {*/
+/*    background-color: blue;*/
+/*    padding: 7px 15px;*/
+/*    border-radius: 10px;*/
+/*    font-size: 1.2em;*/
+/*    margin-right: 10px;*/
+/*}*/
+
+/*.edit-btn:hover {*/
+
+/*}*/
+
+/*.delete-btn {*/
+/*    background-color: red;*/
+/*    padding: 7px 15px;*/
+/*    border-radius: 10px;*/
+/*    font-size: 1.2em;*/
+/*}*/
+
+/*.delete-btn:hover {*/
+
+/*}*/
+
+/*.news-options {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    margin: auto;*/
+/*    padding: 20px;*/
+/*    font-size: 1em;*/
+/*}*/
+
+
+
+.news-panel-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1f1f27;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 30px;
+}
+
+.news-panel-option span {
+    font-weight: bold;
+}
+
+.news-object {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.news-options {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.edit-btn,
+.delete-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.edit-btn {
+    display: flex;
+    flex-direction: row;
+    background-color: #0037ff;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: #004cdd;
+}
+
+.delete-btn {
+    display: flex;
+    flex-direction: row;
+    background-color: #f44336;
+    color: white;
+    transition: background-color 0.3s ease;
+
+}
+
+.delete-btn:hover {
+    background-color: #d32f2f;
+}

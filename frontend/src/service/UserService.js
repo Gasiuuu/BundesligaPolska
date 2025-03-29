@@ -18,25 +18,69 @@ class UserService {
         return response.data;
     }
 
+    static async getAllUsers() {
+        const response = await axios.get(`${UserService.BASE_URL}/admin/get-all-users`, {
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+            },
+        });
+        return response.data;
+    }
+
+    static async getUserById(userId) {
+        const response = await axios.get(`${UserService.BASE_URL}/admin/get-users/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+            },
+        });
+        return response.data;
+    }
+
+    static async updateUser(userId, userEntity) {
+        const response = await axios.put(`${UserService.BASE_URL}/admin/update/${userId}`, userEntity, {
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+            },
+        });
+        return response.data;
+    }
+
+    static async deleteUser(userId) {
+        await axios.delete(`${UserService.BASE_URL}/admin/delete-user/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+            },
+        });
+    }
+
+    static async getYourProfile(token) {
+            const response = await axios.get(`${UserService.BASE_URL}/adminuser/get-profile`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data;
+    }
+
 
     /* auth checker */
 
     static isAuthenticated(){
-        const token = localStorage.getItem('token')
+        const token = sessionStorage.getItem('token')
         return !!token
     }
 
     static logout() {
-        localStorage.removeItem('token')
-        localStorage.removeItem('role')
+        sessionStorage.removeItem('token')
+        sessionStorage.removeItem('role')
     }
     static isAdmin(){
-        const role = localStorage.getItem('role')
+        const role = sessionStorage.getItem('role')
         return role === 'ADMIN'
     }
 
     static isUser(){
-        const role = localStorage.getItem('role')
+        const role = sessionStorage.getItem('role')
         return role === 'USER'
     }
 

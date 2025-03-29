@@ -1,0 +1,12 @@
+.panel-container {
+    width: 70%;
+    margin: auto;
+}
+
+.panel-option {
+    background-color: #1f1f27;
+    border-radius: 10px;
+    margin: 50px auto;
+    padding: 20px;
+    font-size: 1.5em;
+}

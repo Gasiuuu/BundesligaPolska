@@ -22,6 +22,8 @@ public class UserEntity implements UserDetails {
     private String lastName;
     private String password;
     private String city;
+
+    @Column(nullable = false, columnDefinition = "varchar(255) default 'USER'")
     private String role;
 
     @Override

@@ -1,14 +1,11 @@
 import React,{useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import UserService from "../service/UserService";
-import backgroundImage from '../assets/background-img.jpg';
+import backgroundImage from '../assets/bvb-stadion.jpg';
 import facebook from '../assets/facebook.png';
 import google from '../assets/google.png';
 import mail from '../assets/mail.png';
 import logo from '../assets/Bundesliga.jpg';
-
-
-
 
 function Login() {
 
@@ -24,7 +21,8 @@ function Login() {
         try {
             const userData = await UserService.login(email, password)
             if(userData.refreshToken) {
-                localStorage.setItem('token', userData.refreshToken)
+                sessionStorage.setItem('token', userData.refreshToken)
+                sessionStorage.setItem('role', userData.role)
                 // console.log(userData)
                 navigate('/strona-glowna')
             } else {
@@ -46,8 +44,8 @@ function Login() {
             className="h-screen w-full bg-cover bg-center"
             style={{ backgroundImage: `url(${backgroundImage})` }}
         >
-            <div className="flex items-center justify-center h-full">
-                <div className="bg-white bg-opacity-50 backdrop-blur-md rounded-xl p-8 shadow-lg max-w-4xl w-full flex">
+            <div className="flex items-center justify-center h-full text-black">
+                <div className="bg-white bg-opacity-40 backdrop-blur-md rounded-xl p-8 shadow-lg max-w-4xl w-full flex">
 
                     {/* Lewa strona z przyciskami */}
                     <div className="w-1/2 p-6 border-r border-gray-300">

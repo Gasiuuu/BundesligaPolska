@@ -17,7 +17,7 @@ function ClubPage() {
         try {
             const response = await axios.get(API_URL, {
                 headers: {
-                    "X-Auth-Token": apiKey,
+                    "X-Auth-Token": apiKey  ,
                 },
             });
             console.log(response.data.teams);
